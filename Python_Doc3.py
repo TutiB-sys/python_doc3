@@ -15,27 +15,34 @@ from IPython.display import clear_output
 
 # Ask the user 5 bits of input: Do you want to : Show/Add/Delete/clear or Quit?
 
-items=[]
+
+shopping_cart = {}
 
 while True:
-    item=input("Do you want to add item: ")
-    if item.lower()== "quit":
+    response=input('What would you like to do? : \n -add \n -delete \n -show \n -quit ')
+    clear_output
+
+    if response.lower()=='add':
+        item=input('Enter the item : ')
+        quantity=int(input('Enter the quantity: '))
+        shopping_cart[item]= quantity
+    elif response.lower()== 'delete':
+        itemToDelete= input('Enter the item you want to delete')
+        if itemToDelete in shopping_cart:
+            del shopping_cart[itemToDelete]
+        else:
+            print('item is not found')
+    elif response.lower()=='show':
+        for item, quantity in shopping_cart.items():
+            print(f'{item}: {quantity}')
+    elif response.lower()== 'quit':
+        print(your cart is: \n {shopping_cart}')
+        print('Thank you for shopping with us!!!')
         break
     else:
-        items.append(item)
-        Delete_item= input("Do you want to delte item: ")
-        if Delete_item.lower()=="yes":
-            items.remove(item)
-        
-        
+        print('Please enter a valid option' )
 
-print ("======= my shopping cart list========")
-
-for item in items:
-    print(f' Here is you items:  {items}')
-
-
-### 2) Create a Module in VS Code and Import It into jupyter notebook <br>
+### 2) Create a Module in VS Code and Import It into Jupyter Notebook <br>
 # <p><b>Module should have the following capabilities:</b><br><br>
 # 1) Has a function to calculate the square footage of a house <br>
 #     <b>Reminder of Formula: Length X Width == Area<br>
